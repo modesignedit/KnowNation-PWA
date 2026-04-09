@@ -1,10 +1,11 @@
 "use client";
 
-import { MapPin, Phone, Terminal, ArrowRight, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Terminal, MessageCircle } from 'lucide-react';
+import ProjectDiscoveryForm from './ProjectDiscoveryForm';
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-white/10 bg-[#050505] relative overflow-hidden">
+    <footer id="contact" className="mt-20 border-t border-white/10 bg-[#050505] relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[300px] bg-blue-600/5 blur-[120px] pointer-events-none" />
 
@@ -12,37 +13,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           
           {/* Project Inquiry Form */}
-          <div>
-            <h3 className="text-3xl font-bold text-white mb-2">Start a Project</h3>
-            <p className="text-gray-400 mb-8">Partner with KNOW NATION LIMITED for enterprise-grade engineering.</p>
-            
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input 
-                  type="text" 
-                  placeholder="Name / Company" 
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all"
-                />
-                <input 
-                  type="email" 
-                  placeholder="Email Address" 
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all"
-                />
-              </div>
-              <textarea 
-                placeholder="Project Details & Objectives..." 
-                rows={4}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-blue-500/50 focus:bg-white/10 transition-all resize-none"
-              />
-              <button className="w-full group flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl px-4 py-3 transition-colors">
-                Submit Inquiry
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </form>
+          <div className="relative z-10">
+            <ProjectDiscoveryForm />
           </div>
 
           {/* Corporate Contact & Legal */}
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-center">
             <div className="space-y-6">
               <h3 className="text-xl font-bold text-white mb-6">Direct Contact</h3>
               

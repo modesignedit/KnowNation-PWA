@@ -21,7 +21,7 @@ export default function CompanyAbout() {
   ];
 
   return (
-    <section className="py-24 border-t border-white/10 relative">
+    <section id="about" className="py-24 border-t border-white/10 relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
       
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

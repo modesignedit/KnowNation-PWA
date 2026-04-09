@@ -66,7 +66,7 @@ const services = [
 
 export default function ServicesGrid() {
   return (
-    <section className="py-20">
+    <section id="services" className="py-20">
       <div className="mb-12">
         <h2 className="text-3xl font-bold text-white mb-4">Engineering Services</h2>
         <p className="text-gray-400 text-lg max-w-2xl">
