@@ -6,48 +6,48 @@ import { ArrowRight, X, ExternalLink, Github } from 'lucide-react';
 
 const projects = [
   {
-    title: "Decentralized Exchange",
-    niche: "Web3",
-    description: "A high-performance DEX built with Rust and React.",
-    longDescription: "A fully decentralized exchange platform featuring automated market making (AMM), liquidity pools, and real-time order book matching. Engineered for low latency and high throughput on the Solana blockchain.",
-    techStack: ["React", "Rust", "Solana", "Tailwind CSS"],
-    demoLink: "#",
+    title: "Sunteck Global Impact Ltd",
+    niche: "Renewable Energy",
+    description: "Corporate web presence for a solar energy solutions provider.",
+    longDescription: "A high-performance corporate website designed for Sunteck Global Impact Ltd, showcasing their renewable energy solutions, solar products, and corporate initiatives. Built for optimal SEO and lead generation.",
+    techStack: ["React", "Next.js", "Tailwind CSS"],
+    demoLink: "https://www.suntecksolars.com/",
     repoLink: "#",
-    gradient: "from-blue-500/20 to-purple-500/20",
-    imageSeed: "crypto"
+    gradient: "from-yellow-500/20 to-orange-500/20",
+    imageSeed: "solar,energy"
   },
   {
-    title: "Algorithmic Trading Dashboard",
-    niche: "Fintech",
-    description: "Real-time analytics and trade execution platform.",
-    longDescription: "An institutional-grade trading dashboard providing real-time market data visualization, algorithmic strategy backtesting, and automated trade execution via FIX protocol.",
-    techStack: ["Next.js", "Python", "WebSockets", "D3.js"],
-    demoLink: "#",
+    title: "Vietnam Burger Unisex Salon",
+    niche: "Local Business",
+    description: "Modern digital storefront and booking platform for a premium salon.",
+    longDescription: "A sleek, visually engaging digital storefront for Vietnam Burger Unisex Salon. Features a highly responsive design, service galleries, and integrated workflows to drive customer conversions.",
+    techStack: ["React", "Tailwind CSS", "Framer Motion"],
+    demoLink: "https://vietnam-burger-salon.vercel.app",
     repoLink: "#",
-    gradient: "from-emerald-500/20 to-blue-500/20",
-    imageSeed: "trading"
+    gradient: "from-pink-500/20 to-rose-500/20",
+    imageSeed: "salon,hair"
   },
   {
-    title: "AI Content Generator",
-    niche: "AI / ML",
-    description: "LLM-powered tool for marketing copy generation.",
-    longDescription: "A SaaS platform leveraging large language models to generate high-converting marketing copy, blog posts, and social media content. Features custom fine-tuning and brand voice matching.",
-    techStack: ["React", "Node.js", "OpenAI API", "PostgreSQL"],
-    demoLink: "#",
-    repoLink: "#",
-    gradient: "from-orange-500/20 to-red-500/20",
-    imageSeed: "ai"
+    title: "My-Task-Buddy",
+    niche: "Productivity SaaS",
+    description: "An intuitive task management and productivity application.",
+    longDescription: "A streamlined task management application designed to boost daily productivity. Features real-time state management, intuitive drag-and-drop interfaces, and persistent local storage for a seamless user experience.",
+    techStack: ["React", "TypeScript", "Lovable", "Tailwind CSS"],
+    demoLink: "https://todo-comfort-zone.lovable.app",
+    repoLink: "https://github.com/modesignedit/My-task-buddy",
+    gradient: "from-blue-500/20 to-indigo-500/20",
+    imageSeed: "productivity,workspace"
   },
   {
-    title: "Healthcare Portal",
-    niche: "MedTech",
-    description: "Secure patient data management system.",
-    longDescription: "A HIPAA-compliant patient portal allowing secure access to medical records, appointment scheduling, and telehealth video consultations. Built with end-to-end encryption.",
-    techStack: ["React", "TypeScript", "AWS", "WebRTC"],
-    demoLink: "#",
-    repoLink: "#",
-    gradient: "from-cyan-500/20 to-blue-500/20",
-    imageSeed: "medical"
+    title: "Quillscroll",
+    niche: "Content Platform",
+    description: "A dynamic content scrolling and reading platform.",
+    longDescription: "A modern web application focused on delivering a frictionless reading experience. Implements infinite scrolling, rich text rendering, and a minimalist UI to keep users engaged with content.",
+    techStack: ["Next.js", "React", "Tailwind CSS"],
+    demoLink: "https://quillscroll.vercel.app",
+    repoLink: "https://github.com/modesignedit/quillscroll",
+    gradient: "from-purple-500/20 to-blue-500/20",
+    imageSeed: "writing,blog"
   }
 ];
 
@@ -123,7 +123,7 @@ export default function ProjectGallery() {
               className="bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl"
             >
               {/* Image/Video Header */}
-              <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-white/5">
+              <div className="relative h-48 sm:h-64 md:h-80 w-full overflow-hidden bg-white/5">
                 <div className={`absolute inset-0 bg-gradient-to-br ${selectedProject.gradient} opacity-30 mix-blend-overlay z-10`} />
                 <img 
                   src={`https://picsum.photos/seed/${selectedProject.imageSeed}/1200/600?blur=2`}
@@ -140,7 +140,7 @@ export default function ProjectGallery() {
               </div>
 
               {/* Content */}
-              <div className="p-6 sm:p-10 overflow-y-auto">
+              <div className="p-5 sm:p-8 md:p-10 overflow-y-auto">
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span className="px-3 py-1 text-xs font-medium bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full">
                     {selectedProject.niche}
@@ -167,20 +167,28 @@ export default function ProjectGallery() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-white/10">
-                  <a 
-                    href={selectedProject.demoLink}
-                    className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-medium transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    View Live Demo
-                  </a>
-                  <a 
-                    href={selectedProject.repoLink}
-                    className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-medium transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    Source Code
-                  </a>
+                  {selectedProject.demoLink !== "#" && (
+                    <a 
+                      href={selectedProject.demoLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-medium transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      View Live Demo
+                    </a>
+                  )}
+                  {selectedProject.repoLink !== "#" && (
+                    <a 
+                      href={selectedProject.repoLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-medium transition-colors"
+                    >
+                      <Github className="w-4 h-4" />
+                      Source Code
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

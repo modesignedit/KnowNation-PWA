@@ -28,11 +28,13 @@ export default function Navbar() {
     >
       <div className="max-w-5xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <div className="p-2 bg-blue-500/10 rounded-xl border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
-            <Terminal className="w-5 h-5 text-blue-400" />
-          </div>
-          <span className="font-bold text-white tracking-widest text-sm md:text-base">KNOW NATION</span>
+        <a href="#" className="flex items-center group">
+          <img 
+            src="https://drive.google.com/file/d/1kiixpclqJ2ULURouokVGGFrF7dWA7mHp/view?usp=drive_link" 
+            alt="Know Nation Logo" 
+            className="h-8 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
         </a>
 
         {/* Desktop Nav */}
@@ -71,7 +73,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 bg-[#050505]/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-2 shadow-2xl md:hidden"
+            className="absolute top-full left-0 right-0 bg-[#050505]/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-2 shadow-2xl md:hidden max-h-[calc(100vh-80px)] overflow-y-auto"
           >
             {navLinks.map((link) => (
               <a 

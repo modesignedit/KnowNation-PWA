@@ -77,13 +77,13 @@ export default function ProjectDiscoveryForm() {
             required 
             type="text" 
             placeholder="Name / Company" 
-            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all" 
+            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all" 
           />
           <input 
             required 
             type="email" 
             placeholder="Company Email" 
-            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all" 
+            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all" 
           />
         </motion.div>
 
@@ -95,7 +95,7 @@ export default function ProjectDiscoveryForm() {
             required 
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-10 py-3 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all appearance-none cursor-pointer"
+            className="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-10 py-3 text-sm md:text-base text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all appearance-none cursor-pointer"
           >
             <option value="" disabled className="text-gray-500">Select Project Type</option>
             <option value="High-Conversion Landing Page" className="bg-[#050505] text-white">High-Conversion Landing Page (Performance Optimized)</option>
@@ -115,7 +115,7 @@ export default function ProjectDiscoveryForm() {
           <select 
             required 
             defaultValue=""
-            className="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-10 py-3 text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all appearance-none cursor-pointer"
+            className="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-10 py-3 text-sm md:text-base text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all appearance-none cursor-pointer"
           >
             <option value="" disabled className="text-gray-500">Select Budget Range (NGN)</option>
             <option value="1.5m-3.5m" className="bg-[#050505] text-white">₦1.5M – ₦3.5M (Landing Page / Mini-Site)</option>
@@ -138,7 +138,7 @@ export default function ProjectDiscoveryForm() {
             required 
             placeholder={placeholders[placeholderIdx]} 
             rows={5} 
-            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all resize-none" 
+            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all resize-none" 
           />
         </motion.div>
 
