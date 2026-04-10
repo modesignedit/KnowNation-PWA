@@ -73,18 +73,35 @@ export default function ProjectGallery() {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            whileHover={{ scale: 1.02 }}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { delay: index * 0.1, duration: 0.5 } },
+              hover: { scale: 1.03, y: -5, transition: { type: "spring", stiffness: 400, damping: 25 } }
+            }}
+            whileHover="hover"
             onClick={() => setSelectedProject(project)}
-            className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-8 overflow-hidden cursor-pointer hover:bg-white/10 transition-colors flex flex-col h-80"
+            className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-8 overflow-hidden cursor-pointer hover:bg-white/10 transition-colors flex flex-col h-80 shadow-2xl"
           >
-            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700`} />
+            <motion.div 
+              variants={{
+                hover: { scale: 1.15, x: "-2%", y: "-2%" }
+              }}
+              transition={{ type: "tween", ease: "easeOut", duration: 0.7 }}
+              className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-50 group-hover:opacity-100 transition-opacity duration-700`} 
+            />
             
             {/* SVG Pattern Overlay */}
-            <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)' , backgroundSize: '24px 24px' }} />
+            <motion.div 
+              variants={{
+                hover: { scale: 1.05, x: "1%", y: "1%" }
+              }}
+              transition={{ type: "tween", ease: "easeOut", duration: 0.7 }}
+              className="absolute inset-0 opacity-20 mix-blend-overlay" 
+              style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)' , backgroundSize: '24px 24px' }} 
+            />
 
             <div className="relative z-10 flex flex-col h-full">
               <div className="flex justify-between items-start mb-auto">
@@ -109,16 +126,18 @@ export default function ProjectGallery() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              initial={{ scale: 0.9, opacity: 0, y: 40 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 350 }}
               onClick={(e) => e.stopPropagation()}
               className="bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl"
             >

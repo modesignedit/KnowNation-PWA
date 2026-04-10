@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, ChevronDown, Wallet, Layers, Loader2, CheckCircle2, MapPin, Terminal } from 'lucide-react';
+import { ArrowRight, Sparkles, ChevronDown, Wallet, Layers, Loader2, CheckCircle2, MapPin, Terminal, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const placeholders = [
@@ -13,7 +13,16 @@ const placeholders = [
 export default function ProjectDiscoveryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStep, setSubmitStep] = useState(0); // 0: none, 1: calc, 2: verify, 3: success
+  
+  // Form State
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [budget, setBudget] = useState("");
+  const [details, setDetails] = useState("");
+  
+  // Validation State
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [placeholderIdx, setPlaceholderIdx] = useState(0);
 
   useEffect(() => {
@@ -23,8 +32,41 @@ export default function ProjectDiscoveryForm() {
     return () => clearInterval(interval);
   }, []);
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!name.trim() || name.trim().length < 2) {
+      newErrors.name = "Please enter a valid name or company (min 2 characters).";
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.trim() || !emailRegex.test(email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+    
+    if (!selectedCategory) {
+      newErrors.category = "Please select a project type.";
+    }
+    
+    if (!budget) {
+      newErrors.budget = "Please select a budget range.";
+    }
+    
+    if (!details.trim() || details.trim().length < 10) {
+      newErrors.details = "Please provide more details about your vision (min 10 characters).";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     setSubmitStep(1);
     
@@ -40,6 +82,12 @@ export default function ProjectDiscoveryForm() {
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStep(0);
+      // Reset form on success
+      setName("");
+      setEmail("");
+      setSelectedCategory("");
+      setBudget("");
+      setDetails("");
     }, 7000);
   };
 
@@ -73,29 +121,40 @@ export default function ProjectDiscoveryForm() {
         </motion.div>
 
         <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input 
-            required 
-            type="text" 
-            placeholder="Name / Company" 
-            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all" 
-          />
-          <input 
-            required 
-            type="email" 
-            placeholder="Company Email" 
-            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all" 
-          />
+          <div>
+            <input 
+              type="text" 
+              value={name}
+              onChange={(e) => { setName(e.target.value); if (errors.name) setErrors({...errors, name: ''}); }}
+              placeholder="Name / Company" 
+              className={`w-full bg-black/40 border ${errors.name ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:bg-white/5 transition-all`} 
+            />
+            {errors.name && (
+              <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.name}</p>
+            )}
+          </div>
+          <div>
+            <input 
+              type="email" 
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors({...errors, email: ''}); }}
+              placeholder="Company Email" 
+              className={`w-full bg-black/40 border ${errors.email ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:bg-white/5 transition-all`} 
+            />
+            {errors.email && (
+              <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.email}</p>
+            )}
+          </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="relative">
           <div className="absolute left-4 top-1/2 -translate-y-1/2">
-            <Layers className="w-5 h-5 text-gray-400" />
+            <Layers className={`w-5 h-5 ${errors.category ? 'text-red-400' : 'text-gray-400'}`} />
           </div>
           <select 
-            required 
             value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-10 py-3 text-sm md:text-base text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all appearance-none cursor-pointer"
+            onChange={(e) => { setSelectedCategory(e.target.value); if (errors.category) setErrors({...errors, category: ''}); }}
+            className={`w-full bg-black/40 border ${errors.category ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl pl-12 pr-10 py-3 text-sm md:text-base text-white focus:outline-none focus:bg-white/5 transition-all appearance-none cursor-pointer`}
           >
             <option value="" disabled className="text-gray-500">Select Project Type</option>
             <option value="High-Conversion Landing Page" className="bg-[#050505] text-white">High-Conversion Landing Page (Performance Optimized)</option>
@@ -106,16 +165,19 @@ export default function ProjectDiscoveryForm() {
             <option value="E-commerce & High-Perf PWAs" className="bg-[#050505] text-white">E-commerce & High-Perf PWAs</option>
           </select>
           <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+          {errors.category && (
+            <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.category}</p>
+          )}
         </motion.div>
 
         <motion.div variants={itemVariants} className="relative">
           <div className="absolute left-4 top-1/2 -translate-y-1/2">
-            <Wallet className="w-5 h-5 text-gray-400" />
+            <Wallet className={`w-5 h-5 ${errors.budget ? 'text-red-400' : 'text-gray-400'}`} />
           </div>
           <select 
-            required 
-            defaultValue=""
-            className="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-10 py-3 text-sm md:text-base text-white focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all appearance-none cursor-pointer"
+            value={budget}
+            onChange={(e) => { setBudget(e.target.value); if (errors.budget) setErrors({...errors, budget: ''}); }}
+            className={`w-full bg-black/40 border ${errors.budget ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl pl-12 pr-10 py-3 text-sm md:text-base text-white focus:outline-none focus:bg-white/5 transition-all appearance-none cursor-pointer`}
           >
             <option value="" disabled className="text-gray-500">Select Budget Range (NGN)</option>
             <option value="1.5m-3.5m" className="bg-[#050505] text-white">₦1.5M – ₦3.5M (Landing Page / Mini-Site)</option>
@@ -125,6 +187,9 @@ export default function ProjectDiscoveryForm() {
             <option value="30m+" className="bg-[#050505] text-white">₦30M+ (Custom Infrastructure)</option>
           </select>
           <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+          {errors.budget && (
+            <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.budget}</p>
+          )}
         </motion.div>
 
         <motion.div variants={itemVariants} className="space-y-3">
@@ -134,12 +199,18 @@ export default function ProjectDiscoveryForm() {
               <span className="font-semibold text-blue-300">Prompt Guide:</span> Tell us about your audience, revenue model, and specific needs (e.g., Monnify integration, AI features).
             </p>
           </div>
-          <textarea 
-            required 
-            placeholder={placeholders[placeholderIdx]} 
-            rows={5} 
-            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:border-blue-500/50 focus:bg-white/5 transition-all resize-none" 
-          />
+          <div>
+            <textarea 
+              value={details}
+              onChange={(e) => { setDetails(e.target.value); if (errors.details) setErrors({...errors, details: ''}); }}
+              placeholder={placeholders[placeholderIdx]} 
+              rows={5} 
+              className={`w-full bg-black/40 border ${errors.details ? 'border-red-500/50 focus:border-red-500' : 'border-white/10 focus:border-blue-500/50'} rounded-xl px-4 py-3 text-sm md:text-base text-white placeholder:text-gray-500 focus:outline-none focus:bg-white/5 transition-all resize-none`} 
+            />
+            {errors.details && (
+              <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> {errors.details}</p>
+            )}
+          </div>
         </motion.div>
 
         <motion.button 
@@ -163,7 +234,7 @@ export default function ProjectDiscoveryForm() {
           </div>
           <div className="flex items-center gap-1.5 text-gray-500 text-[10px] uppercase tracking-wider">
             <MapPin className="w-3 h-3" />
-            <span>Rd 27, Lekki Scheme 2, Ajah, Lagos State</span>
+            <span>Rd 27, Lekki Scheme 2, Ajah, Lagos. NG.</span>
           </div>
         </motion.div>
       </motion.form>

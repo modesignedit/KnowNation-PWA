@@ -1,18 +1,26 @@
 import { motion } from 'motion/react';
-import { Code2, Database, Layout, Server, Github, ArrowUpRight, CircleDot, Sparkles, Terminal, Wand2, Cpu } from 'lucide-react';
+import { Code2, Database, Layout, Server, Github, ArrowUpRight, CircleDot, Sparkles, Terminal, Wand2, Cpu, FileCode2, Paintbrush, LayoutTemplate, Table, Brain, Rocket } from 'lucide-react';
 
 const frontendTools = [
   { name: "React", icon: Layout },
   { name: "TypeScript", icon: Code2 },
   { name: "Node.js", icon: Server },
-  { name: "PostgreSQL", icon: Database }
+  { name: "PostgreSQL", icon: Database },
+  { name: "HTML3", icon: FileCode2 },
+  { name: "CSS3", icon: Paintbrush },
+  { name: "WordPress", icon: LayoutTemplate },
+  { name: "SQL", icon: Table },
+  { name: "Python", icon: Terminal }
 ];
 
 const aiTools = [
   { name: "Gemini 1.5 Pro", icon: Sparkles },
+  { name: "Google AI Studio", icon: Brain },
+  { name: "Antigravity", icon: Rocket },
   { name: "Cursor", icon: Terminal },
   { name: "Vercel v0", icon: Wand2 },
-  { name: "Lovable.dev", icon: Cpu }
+  { name: "Lovable.dev", icon: Cpu },
+  { name: "GitHub Copilot", icon: Github }
 ];
 
 export default function BentoGrid() {
@@ -45,9 +53,12 @@ export default function BentoGrid() {
           <h3 className="text-gray-400 font-medium mb-6">Core Engineering Stack</h3>
           <div className="flex flex-wrap gap-3 mt-auto">
             {frontendTools.map((tool, idx) => (
-              <div key={idx} className="flex items-center gap-2 px-4 py-2.5 bg-black/40 rounded-xl border border-white/5 text-sm text-gray-300">
-                <tool.icon className="w-4 h-4 text-blue-400" />
-                {tool.name}
+              <div key={idx} className="group relative flex items-center justify-center w-12 h-12 bg-black/40 rounded-xl border border-white/5 hover:bg-white/10 transition-colors cursor-default">
+                <tool.icon className="w-5 h-5 text-blue-400 group-hover:scale-110 transition-transform" />
+                <div className="absolute -top-10 scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 bg-[#1a1a1a] text-white text-xs py-1.5 px-3 rounded-lg whitespace-nowrap pointer-events-none z-10 shadow-xl border border-white/10">
+                  {tool.name}
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#1a1a1a] border-b border-r border-white/10 rotate-45" />
+                </div>
               </div>
             ))}
           </div>
@@ -69,9 +80,12 @@ export default function BentoGrid() {
           </div>
           <div className="flex flex-wrap gap-3 mt-auto">
             {aiTools.map((tool, idx) => (
-              <div key={idx} className="flex items-center gap-2 px-4 py-2.5 bg-black/40 rounded-xl border border-white/5 text-sm text-gray-300">
-                <tool.icon className="w-4 h-4 text-purple-400" />
-                {tool.name}
+              <div key={idx} className="group relative flex items-center justify-center w-12 h-12 bg-black/40 rounded-xl border border-white/5 hover:bg-white/10 transition-colors cursor-default">
+                <tool.icon className="w-5 h-5 text-purple-400 group-hover:scale-110 transition-transform" />
+                <div className="absolute -top-10 scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 bg-[#1a1a1a] text-white text-xs py-1.5 px-3 rounded-lg whitespace-nowrap pointer-events-none z-10 shadow-xl border border-white/10">
+                  {tool.name}
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#1a1a1a] border-b border-r border-white/10 rotate-45" />
+                </div>
               </div>
             ))}
           </div>

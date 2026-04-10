@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /webhooks/
+
+Sitemap: https://know-nation.vercel.app/sitemap.xml

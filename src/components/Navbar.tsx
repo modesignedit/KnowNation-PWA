@@ -28,11 +28,11 @@ export default function Navbar() {
     >
       <div className="max-w-5xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center group">
+        <a href="#" className="flex items-center group shrink-0">
           <img 
-            src="https://drive.google.com/file/d/1kiixpclqJ2ULURouokVGGFrF7dWA7mHp/view?usp=drive_link" 
+            src="https://lh3.googleusercontent.com/d/1kiixpclqJ2ULURouokVGGFrF7dWA7mHp" 
             alt="Know Nation Logo" 
-            className="h-8 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[200px] sm:max-w-[250px] object-contain transition-transform group-hover:scale-105"
             referrerPolicy="no-referrer"
           />
         </a>
